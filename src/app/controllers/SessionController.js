@@ -4,16 +4,16 @@ import User from '../models/User';
 import authConfig from '../../config/auth';
 
 class SessionController {
-  async store(req, res) {
+  async store(req, res) {   
     const { email, password } = req.body;
 
     const schema = Yup.object().shape({
-      email: Yup.string().email(),
-      password: Yup.string(),
+      email: Yup.string().email().required(),
+      password: Yup.string().required(),
     });
 
-    if (!schema.isValid()) {
-      return res.status(400).json({ error: 'validation fails' });
+    if (!(await schema.isValid())) {
+      return res.status(400).json({ error: 'validation fails, try again.' });
     }
 
     const user = await User.findOne({ where: { email } });
