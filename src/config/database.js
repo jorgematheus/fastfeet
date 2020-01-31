@@ -23,7 +23,7 @@ if (env === 'home') {
     dialect: 'mysql',
     host: 'localhost',
     username: 'admin',
-    password: 'juninho1010',
+    password: 'pass',
     database: 'fastfeet',
     define: {
       timestamps: true,
