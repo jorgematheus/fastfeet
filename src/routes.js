@@ -15,7 +15,7 @@ routes.get('/users', UserController.index);
 routes.post('/users', UserController.store);
 
 // recipient routes
-routes.get('/recipient', RecipientController.index)
-routes.post('/recipient', RecipientController.store)
+routes.get('/recipient', RecipientController.index);
+routes.post('/recipient', RecipientController.store);
 
 export default routes;
