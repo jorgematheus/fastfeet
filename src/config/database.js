@@ -1,4 +1,4 @@
-const env = 'job';
+const env = 'home';
 
 if (env === 'home') {
   module.exports = {
@@ -11,11 +11,10 @@ if (env === 'home') {
       timestamps: true,
       underscored: true,
       underscoredAll: true,
-       /** por padrao, o sequelize cria as tabelas com alguns padroes,
+      /** por padrao, o sequelize cria as tabelas com alguns padroes,
         um deles é colocar "s" no final do nome da tabela, usando 
        freezaTableName = true, tiramos essas regras.
-       **/
-      freezeTableName: true,
+       * */
     },
   };
 } else {
@@ -32,7 +31,7 @@ if (env === 'home') {
       /** por padrao, o sequelize cria as tabelas com alguns padroes,
         um deles é colocar "s" no final do nome da tabela, usando 
        freezaTableName = true, tiramos essas regras.
-       **/
+       * */
       freezeTableName: true,
     },
   };
