@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-export default class Packages extends Model {
+export default class Package extends Model {
   static init(sequelize) {
     super.init(
       {

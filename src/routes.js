@@ -6,6 +6,8 @@ import SessionController from './app/controllers/SessionController';
 import RecipientController from './app/controllers/RecipientController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import FileController from './app/controllers/FileController';
+import PackageController from './app/controllers/PackageController';
+
 import AuthMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
@@ -31,5 +33,8 @@ routes.delete('/deliveryman/:id', DeliverymanController.delete);
 
 // files
 routes.post('/files', upload.single('file'), FileController.store);
+
+// package routes
+routes.post('/packages', PackageController.store);
 
 export default routes;

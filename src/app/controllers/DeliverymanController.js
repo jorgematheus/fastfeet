@@ -40,7 +40,7 @@ class DeliverymanController {
   }
 
   async update(req, res) {
-    const { name, email } = req.body;
+    const { email } = req.body;
 
     const schema = Yup.object().shape({
       name: Yup.string(),
@@ -57,8 +57,6 @@ class DeliverymanController {
         return res.status(400).json({ error: 'User already exists.' });
       }
     }
-
-    console.log(req.body);
 
     await Deliveryman.update(req.body, {
       where: { id: req.params.id },

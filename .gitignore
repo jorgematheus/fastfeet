@@ -1,2 +1,4 @@
 node_modules
+tmp/uploads/signatures
 tmp/uploads/*.*
+.env
