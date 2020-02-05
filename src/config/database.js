@@ -1,4 +1,4 @@
-const env = 'home';
+const env = 'job';
 
 if (env === 'home') {
   module.exports = {
@@ -22,7 +22,7 @@ if (env === 'home') {
     dialect: 'mysql',
     host: 'localhost',
     username: 'admin',
-    password: 'pass',
+    password: 'juninho1010',
     database: 'fastfeet',
     define: {
       timestamps: true,
@@ -32,7 +32,7 @@ if (env === 'home') {
         um deles é colocar "s" no final do nome da tabela, usando 
        freezaTableName = true, tiramos essas regras.
        * */
-      freezeTableName: true,
+      //freezeTableName: true,
     },
   };
 }

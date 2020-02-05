@@ -1,5 +1,8 @@
 import * as Yup from 'yup';
 import Package from '../models/Package';
+import Deliveryman from '../models/Deliveryman';
+import Queue from '../../lib/Queue';
+import NotificationPackageMail from '../jobs/NotificationPackageMail';
 
 class PackageController {
   async store(req, res) {
@@ -13,9 +16,21 @@ class PackageController {
       return res.status(400).json({ err: 'Validations fails.' });
     }
 
-    const create = await Package.create(req.body);
+    const { deliveryman_id, product } = await Package.create(req.body);
 
-    return res.json(create);
+    const { email, name } = await Deliveryman.findByPk(deliveryman_id);
+
+
+    const deliveryman = {
+      product,
+      email, 
+      name      
+    };
+
+    await Queue.add(NotificationPackageMail.key, { deliveryman });
+
+
+    return res.json(deliveryman);
 
     // return res.json();
   }

@@ -2,3 +2,4 @@ node_modules
 tmp/uploads/signatures
 tmp/uploads/*.*
 .env
+src/app/database/migrations
