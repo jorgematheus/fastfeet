@@ -1,4 +1,4 @@
-const env = 'job';
+const env = 'home';
 
 if (env === 'home') {
   module.exports = {
@@ -32,7 +32,7 @@ if (env === 'home') {
         um deles é colocar "s" no final do nome da tabela, usando 
        freezaTableName = true, tiramos essas regras.
        * */
-      //freezeTableName: true,
+      // freezeTableName: true,
     },
   };
 }

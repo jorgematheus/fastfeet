@@ -20,15 +20,13 @@ class PackageController {
 
     const { email, name } = await Deliveryman.findByPk(deliveryman_id);
 
-
     const deliveryman = {
       product,
-      email, 
-      name      
+      email,
+      name,
     };
 
     await Queue.add(NotificationPackageMail.key, { deliveryman });
-
 
     return res.json(deliveryman);
 

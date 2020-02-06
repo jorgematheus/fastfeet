@@ -1,5 +1,3 @@
-import { format, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt';
 import Mail from '../../lib/Mail';
 
 class NotificationPackageMail {
@@ -9,7 +7,6 @@ class NotificationPackageMail {
 
   // responsável pela realização da tarefa
   async handle({ data }) {
-    console.log('fila executada...', deliveryman);
     const { deliveryman } = data;
     await Mail.sendMail({
       to: `${deliveryman.name} <${deliveryman.email}>`,
@@ -17,7 +14,7 @@ class NotificationPackageMail {
       template: 'packageDone',
       context: {
         deliveryman: deliveryman.name,
-        product: deliveryman.product
+        product: deliveryman.product,
       },
     });
   }

@@ -9,7 +9,7 @@ export default class Signature extends Model {
         url: {
           type: Sequelize.VIRTUAL,
           get() {
-            return `localhost:3001/files/signatures/${this.path}`;
+            return `localhost:3001/files/${this.path}`;
           },
         },
       },
