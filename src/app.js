@@ -6,9 +6,11 @@ import path from 'path';
 import * as Sentry from '@sentry/node';
 import routes from './routes';
 import './database/index';
+import configSentry from './config/sentry';
 class App {
   constructor() {
     this.server = express();
+    Sentry.init(configSentry);
     this.middleware();
     this.routes();
   }
@@ -24,6 +26,7 @@ class App {
 
   routes() {
     this.server.use(routes);
+    this.server.use(Sentry.Handlers.errorHandler());
   }
 
   // middleware para capturar todos os erros da aplicação
