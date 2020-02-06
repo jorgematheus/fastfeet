@@ -26,7 +26,7 @@ class PackageController {
       name,
     };
 
-    await Queue.add(NotificationPackageMail.key, { deliveryman });
+   await Queue.add(NotificationPackageMail.key, { deliveryman });
 
     return res.json(deliveryman);
 

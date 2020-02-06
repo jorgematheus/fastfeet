@@ -44,15 +44,14 @@ class PackageDeliverymanController {
   async start(req, res) {
     const schema = Yup.object().shape({
       deliveryman_id: Yup.number().required(),
-      package_id: Yup.number().required(),
-      start_date: Yup.date().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
       return res.json({ error: 'Validation fails.' });
     }
-
-    const { deliveryman_id, package_id: id, start_date } = req.body;
+ 
+    const { deliveryman_id } = req.body;
+    const { idPackage: id } = req.params;
 
     const quantityToday = await Package.count({
       where: {
@@ -81,19 +80,23 @@ class PackageDeliverymanController {
       return res.json({ error: 'Package already withdrawn.' });
     }
 
-    // gethours ta retonando a hora com +1, entao estou sbtraindo 1
-    const hour = getHours(parseISO(start_date)) - 1;
+    const actualDate = new Date();
 
-    const minutes = getMinutes(parseISO(start_date));
+    // gethours ta retonando a hora com +1, entao estou sbtraindo 1
+    const hour = getHours(actualDate);
+
+    const minutes = getMinutes(actualDate);
 
     // verificaro horário e também verifica os minutos, se for 18:01 não sera
     // mais possível retirar
 
     if (!(hour >= 8 && hour <= 18)) {
-      return res.json({ error: 'Delivery time is 8:00H to 18:00H' });
+      console.log(actualDate)
+      return res.json({ error: 'Delivery time is 8:00H to 18:00H.' });
     }
 
     if (hour === 18 && minutes !== 0) {
+      console.log(actualDate)
       return res.json({ error: 'Delivery time is 8:00H to 18:00H' });
     }
 
@@ -105,14 +108,14 @@ class PackageDeliverymanController {
   async end(req, res) {
     const schema = Yup.object().shape({
       deliveryman_id: Yup.number().required(),
-      package_id: Yup.number().required(),
     });
 
     if (!(await schema.isValid(req.query))) {
       return res.json({ error: 'Validation fails.' });
     }
 
-    const { deliveryman_id, package_id: id } = req.query;
+    const { deliveryman_id } = req.query;
+    const { idPackage: id } = req.params;
 
     const { originalname: name, filename: path } = req.file;
 

@@ -1,12 +1,12 @@
-const env = 'home';
+require('dotenv/config');
 
-if (env === 'home') {
+if (process.env.NODE_DB === 'postgres') {
   module.exports = {
-    dialect: 'postgres',
-    host: '192.168.99.100',
-    username: 'postgres',
-    password: 'docker',
-    database: 'fastfeet',
+    dialect: process.env.PG_DB_DIALECT,
+    host: process.env.PG_DB_HOST,
+    username: process.env.PG_DB_USER,
+    password: process.env.PG_DB_PASS,
+    database: process.env.PG_DB_NAME,
     define: {
       timestamps: true,
       underscored: true,
@@ -19,11 +19,11 @@ if (env === 'home') {
   };
 } else {
   module.exports = {
-    dialect: 'mysql',
-    host: 'localhost',
-    username: 'admin',
-    password: 'juninho1010',
-    database: 'fastfeet',
+    dialect: process.env.MYSQL_DB_DIALECT,
+    host: process.env.MYSQL_DB_HOST,
+    username: process.env.MYSQL_DB_USER,
+    password: process.env.MYSQL_DB_PASS,
+    database: process.env.MYSQL_DB_NAME,
     define: {
       timestamps: true,
       underscored: true,

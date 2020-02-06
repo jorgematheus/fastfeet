@@ -21,6 +21,13 @@ module.exports = {
         onDelete: 'SET NULL',
         allowNull: true,
       },
+      signature_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'signatures', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: true,
+      },
       product: {
         type: Sequelize.STRING,
         allowNull: false,
