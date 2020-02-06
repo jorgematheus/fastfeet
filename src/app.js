@@ -3,6 +3,7 @@ import express from 'express';
 import 'express-async-errors';
 import Youch from 'youch';
 import path from 'path';
+import * as Sentry from '@sentry/node';
 import routes from './routes';
 import './database/index';
 class App {
@@ -13,6 +14,7 @@ class App {
   }
 
   middleware() {
+    this.server.use(Sentry.Handlers.requestHandler());
     this.server.use(express.json());
     this.server.use(
       '/files',

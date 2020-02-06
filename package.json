@@ -20,6 +20,7 @@
     "sucrase": "^3.12.1"
   },
   "dependencies": {
+    "@sentry/node": "^5.12.3",
     "bcryptjs": "^2.4.3",
     "bee-queue": "^1.2.3",
     "date-fns": "^2.9.0",
