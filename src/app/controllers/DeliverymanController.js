@@ -4,7 +4,6 @@ import Signature from '../models/Signature';
 
 class DeliverymanController {
   async index(req, res) {
-    try {
       const deliveryman = await Deliveryman.findAll({ 
         attributes: ['id', 'name', 'email'], 
         include: [ 
@@ -16,9 +15,6 @@ class DeliverymanController {
       });
 
       return res.json(deliveryman);
-    } catch (err) {
-      return res.json(err);
-    }
   }
 
   async store(req, res) {
