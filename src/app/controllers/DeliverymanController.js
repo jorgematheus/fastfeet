@@ -1,12 +1,19 @@
 import * as Yup from 'yup';
 import Deliveryman from '../models/Deliveryman';
+import Signature from '../models/Signature';
 
 class DeliverymanController {
   async index(req, res) {
     try {
-      const deliveryman = await Deliveryman.findAll();
-
-      console.log(deliveryman);
+      const deliveryman = await Deliveryman.findAll({ 
+        attributes: ['id', 'name', 'email'], 
+        include: [ 
+          { 
+            model: Signature, as: 'avatar', 
+            attributes: ['id', 'path', 'url']  
+          } 
+        ] 
+      });
 
       return res.json(deliveryman);
     } catch (err) {
